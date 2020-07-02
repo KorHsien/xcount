@@ -1,0 +1,38 @@
+@import 'water.css/dist/light.min.css';
+
+:root {
+  --selection: #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --selection: #aaa;
+    --text-muted: #aaa;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* avoid inconsistent width when content height changes
+     caused by custom scrollbar */
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0 auto;
+  min-width: 300px;
+  max-width: 1000px;
+  padding: 0 16px;
+}
+
+summary {
+  cursor: pointer;
+}
+
+th + th:last-of-type,
+td + td:last-of-type {
+  text-align: right;
+}
