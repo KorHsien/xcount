@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import * as R from 'ramda'
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import { dynamicTypeFactory, filterWith, sumBy, mapIndexed } from '../utils'
 
 const BILL_TYPES = { 0: '支出', 1: '收入' } as const
