@@ -1,20 +1,12 @@
-<script lang="ts">
-  import { defineComponent, PropType, computed } from 'vue'
+<script setup="props" lang="ts">
+  import { computed } from 'vue'
   import { Bill, calcSumByTypes } from '../data'
 
-  export default defineComponent({
-    props: {
-      bills: {
-        type: Array as PropType<Bill[]>,
-        required: true,
-      },
-    },
-    setup(props) {
-      return {
-        sumByTypes: computed(() => calcSumByTypes(props.bills)),
-      }
-    }
-  })
+  declare const props: {
+    bills: Bill[]
+  }
+
+  export const sumByTypes = computed(() => calcSumByTypes(props.bills))
 </script>
 
 <template>

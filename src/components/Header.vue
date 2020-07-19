@@ -1,31 +1,26 @@
 <script lang="ts">
-  import dayjs from 'dayjs'
-  import { PropType, reactive, computed } from 'vue'
-  import { Category, calcMonths, bills, categories } from '../data'
-
   type Selected = {
     month?: dayjs.Dayjs
     category?: Category
   }
 
-  export default {
-    props: {
-      selected: {
-        type: Object as PropType<Selected>,
-        required: true,
-      },
-    },
-    setup() {
-      return {
-        months: computed(() => calcMonths(bills.value)),
-        categories,
-      }
-    }
-  }
-
   export function useSelected() {
     return reactive<Selected>({})
   }
+</script>
+
+<script setup="props" lang="ts">
+  import dayjs from 'dayjs'
+  import { reactive, computed } from 'vue'
+  import { Category, calcMonths, bills } from '../data'
+
+  export { categories } from '../data'
+
+  declare const props: {
+    selected: Selected
+  }
+
+  export const months = computed(() => calcMonths(bills.value))
 </script>
 
 <template>

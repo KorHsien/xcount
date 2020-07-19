@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
   import { computed } from 'vue'
   import { bills, filterByMonth, filterByCategory } from './data'
   import Header, { useSelected } from './components/Header.vue'
@@ -13,24 +13,19 @@
       NewBill,
       Sum,
     },
-    setup() {
-      const selected = useSelected()
-
-      const billsFilteredByMonth = computed(() =>
-        filterByMonth(selected.month, bills.value)
-      )
-      const billsFiltered = computed(() =>
-        filterByCategory(selected.category, billsFilteredByMonth.value)
-      )
-
-      return {
-        showAddDialog: false,
-        selected,
-        billsFilteredByMonth,
-        billsFiltered,
-      }
-    }
   }
+
+  export const showAddDialog = false
+
+  export const selected = useSelected()
+
+  export const billsFilteredByMonth = computed(() =>
+    filterByMonth(selected.month, bills.value)
+  )
+  
+  export const billsFiltered = computed(() =>
+    filterByCategory(selected.category, billsFilteredByMonth.value)
+  )
 </script>
 
 <template>

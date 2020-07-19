@@ -1,28 +1,26 @@
-<script lang="ts">
-  import { defineComponent } from 'vue'
-  import { useNewBill, bills, categories } from '../data'
+<script setup="_, { emit }" lang="ts">
+  import * as R from 'ramda'
+  import { useNewBill, bills } from '../data'
+  
+  export { categories } from '../data'
 
-  export default defineComponent({
-    setup(props, { emit }) {
-      const { newBill, addBill } = useNewBill(bills.value)
+  declare function emit(e: 'added'): void
 
-      function onAddBill() {
+  export const { newBill, addBill } = R.applyTo(
+    useNewBill(bills.value),
+    ({ newBill, addBill }) => ({
+      newBill,
+      addBill() {
         addBill()
         newBill.amount = undefined
         emit('added')
-      }
-
-      return {
-        categories,
-        newBill,
-        onAddBill,
-      }
-    }
-  })
+      },
+    }),
+  )
 </script>
 
 <template>
-  <form @submit.prevent="onAddBill">
+  <form @submit.prevent="addBill">
     <fieldset>
       <legend>添加账单</legend>
 

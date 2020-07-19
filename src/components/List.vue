@@ -1,14 +1,8 @@
-<script lang="ts">
-  import { PropType } from 'vue'
+<script setup="props" lang="ts">
   import { Bill } from '../data'
 
-  export default {
-    props: {
-      bills: {
-        type: Array as PropType<Bill[]>,
-        required: true,
-      },
-    },
+  declare const props: {
+    bills: Bill[]
   }
 </script>
 
